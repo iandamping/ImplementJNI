@@ -16,8 +16,8 @@ interface ApiInterface {
     @FormUrlEncoded
     @POST(getAllNews)
     fun getAllNews(
-        @Field("device_id") device_id: String,
-        @Field("community_id") community_id: String,
-        @Field("data") data: String
+        @Field("device_id") device_id: String?,
+        @Field("community_id") community_id: String?,
+        @Field("data") data: String?
     ): Call<Base<String>>
 }

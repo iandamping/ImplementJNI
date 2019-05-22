@@ -1,6 +1,7 @@
 package com.ian.app.helper
 
 import android.content.Context
+import com.ian.app.data.R
 import java.io.IOException
 import java.security.KeyManagementException
 import java.security.KeyStore
@@ -23,7 +24,7 @@ object SSLHelper {
     fun getSSLConfig(context: Context): SSLContext {
         val cf: CertificateFactory? = CertificateFactory.getInstance("X.509")
         var ca: Certificate? = null
-        context.resources.openRawResource(com.ian.app.R.raw.wildcard)
+        context.resources.openRawResource(R.raw.wildcard)
             .use { cert -> ca = cf!!.generateCertificate(cert) }
 
         // Creating a KeyStore containing our trusted CAs

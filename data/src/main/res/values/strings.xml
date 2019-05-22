@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">data</string>
+    <string name="device_id">355033100414236</string>
+    <string name="failed_parse">parsing failed</string>
+</resources>
