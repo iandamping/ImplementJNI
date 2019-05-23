@@ -5,12 +5,12 @@ import com.google.gson.Gson
 import com.ian.app.DataConfig
 import com.ian.app.DataConfig.getCommunityID
 import com.ian.app.DataConfig.getEncriptionKey
+import com.ian.app.DataConfig.getRestClient
 import com.ian.app.api.ApiInterface
 import com.ian.app.data.R
-import com.ian.app.helper.FTAes
-import com.ian.app.helper.NetworkConfig
-import com.ian.app.helper.executes
-import com.ian.app.helper.logE
+import com.ian.app.helper.*
+import com.ian.app.helper.DataConstant.deviceID
+import com.ian.app.helper.DataConstant.parseFailed
 import com.ian.app.model.GeneralData
 
 /**
@@ -18,12 +18,11 @@ import com.ian.app.model.GeneralData
 Created by Ian Damping on 22/05/2019.
 Github = https://github.com/iandamping
  */
- class NewsRepository(private val ctx: Context) {
-    private var api: ApiInterface = NetworkConfig.getRetrofit(ctx).create(ApiInterface::class.java)
+ class NewsRepository {
     private val gson = Gson()
 
     fun getNews(successGetData:(GeneralData?) -> Unit, failedGetData:()->Unit) {
-        api.getAllNews(ctx.getString(R.string.device_id), getCommunityID(), encryptedData()).executes({
+        getRestClient().getAllNews(deviceID, getCommunityID(), encryptedData()).executes({
             logE(it.localizedMessage)
         }, {
             it?.let { data ->
@@ -35,7 +34,7 @@ Github = https://github.com/iandamping
 
                     }
                     else -> {
-                        logE(data.data + ctx.getString(R.string.failed_parse))
+                        logE(data.data + parseFailed)
                         failedGetData()
                     }
                 }
@@ -49,12 +48,12 @@ Github = https://github.com/iandamping
         val jsonData = "{\n" +
                 " \"page\": \"" + "1" + "\",\n" +
                 " \"page_size\": \"" + "10" + "\",\n" +
-                " \"device_id\": \"" + ctx.getString(R.string.device_id) + "\",\n" +
+                " \"device_id\": \"" + deviceID + "\",\n" +
                 " \"community_id\": \"" + getCommunityID() + "\",\n" +
                 " \"type\": \"" + "news" + "\",\n" +
                 " \"email\": \"" + "" + "\",\n" +
                 " \"keyword\": \"" + "" + "\"\n" +
                 "}"
-        return FTAes.encrypt(jsonData, DataConfig.getEncriptionKey())
+        return FTAes.encrypt(jsonData, getEncriptionKey())
     }
 }

@@ -10,11 +10,10 @@ Created by Ian Damping on 07/05/2019.
 Github = https://github.com/iandamping
  */
 class MainPresenter : BasePresenter<MainView>() {
-    private lateinit var repo: NewsRepository
 
     override fun onCreate() {
-        repo = NewsRepository(getLifeCycleOwner())
-        repo.getNews({ view()?.onSuccessGetData(it)
+        NewsRepository().getNews({
+            view()?.onSuccessGetData(it)
             view()?.onSuccessGetHeadlineData(it)
         }, {
             logE(" error happen ")

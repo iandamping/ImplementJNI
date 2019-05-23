@@ -38,12 +38,12 @@ private fun getOkHttpClient(ctx: Context): OkHttpClient {
     return OkHttpClient.Builder()
         .readTimeout(timeOut, TimeUnit.SECONDS)
         .connectTimeout(timeOut, TimeUnit.SECONDS)
-        .certificatePinner(
-            CertificatePinner.Builder()
-                .add("beta.smartcom.id", "sha256/3+buBfi9K+OhPLZjRhPtL5LnAgNvG1442uY3ShsPy10=")
-                .build()
-        )
-//        .sslSocketFactory(SSLHelper.getSSLConfig(ctx).socketFactory)
+//        .certificatePinner(
+//            CertificatePinner.Builder()
+//                .add("beta.smartcom.id", "sha256/3+buBfi9K+OhPLZjRhPtL5LnAgNvG1442uY3ShsPy10=")
+//                .build()
+//        )
+        .sslSocketFactory(SSLHelper.getSSLConfig(ctx).socketFactory)
         .writeTimeout(timeOut, TimeUnit.SECONDS)
         .addInterceptor(getInterceptor())
         .addInterceptor { chain ->

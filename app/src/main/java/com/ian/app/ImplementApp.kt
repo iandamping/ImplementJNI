@@ -23,5 +23,6 @@ class ImplementApp : Application() {
         DataConfig.setApiKey(apiKey)
         DataConfig.setEncriptionKey(encriptionKey)
         DataConfig.setCommunityID(communityId)
+        DataConfig.setRestClient(this)
     }
 }
