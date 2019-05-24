@@ -12,7 +12,7 @@ Github = https://github.com/iandamping
 class MainPresenter : BasePresenter<MainView>() {
 
     override fun onCreate() {
-        NewsRepository().getNews({
+        NewsRepository(getLifeCycleOwner()).getNews({
             view()?.onSuccessGetData(it)
             view()?.onSuccessGetHeadlineData(it)
         }, {

@@ -2,11 +2,11 @@ package com.ian.app.helper
 
 /**
  *
-Created by Ian Damping on 30/04/2019.
+Created by Ian Damping on 24/05/2019.
 Github = https://github.com/iandamping
  */
-object SecretKeyHelper {
 
+object SecretKeyHelper {
     val baseUrl: String
         external get
     val apiKey: String
@@ -19,6 +19,5 @@ object SecretKeyHelper {
     init {
         System.loadLibrary("ian")
     }
-
 
 }

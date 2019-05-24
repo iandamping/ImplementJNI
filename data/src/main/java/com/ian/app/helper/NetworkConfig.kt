@@ -2,10 +2,9 @@ package com.ian.app.helper
 
 import android.content.Context
 import com.google.gson.GsonBuilder
-import com.ian.app.DataConfig.getApiKey
-import com.ian.app.DataConfig.getBaseUrl
 import com.ian.app.data.BuildConfig
-import okhttp3.CertificatePinner
+import com.ian.app.helper.SecretKeyHelper.apiKey
+import com.ian.app.helper.SecretKeyHelper.baseUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,7 +25,7 @@ object NetworkConfig {
 
     fun getRetrofit(ctx: Context): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(getBaseUrl())
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .client(getOkHttpClient(ctx))
             .build()
@@ -49,7 +48,7 @@ private fun getOkHttpClient(ctx: Context): OkHttpClient {
         .addInterceptor { chain ->
             val ongoing = chain.request().newBuilder()
             ongoing.addHeader("Content-Type", "application/json")
-            ongoing.addHeader("api-key", getApiKey())
+            ongoing.addHeader("api-key", apiKey)
             chain.proceed(ongoing.build())
         }
         .build()
