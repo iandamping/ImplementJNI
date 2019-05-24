@@ -22,6 +22,9 @@ class NewsRepository(ctx: Context) {
     private val gson = Gson()
     private var api: ApiInterface = NetworkConfig.getRetrofit(ctx).create(ApiInterface::class.java)
 
+    init {
+        System.loadLibrary("ian")
+    }
 
     fun getNews(successGetData: (GeneralData?) -> Unit, failedGetData: () -> Unit) {
         api.getAllNews(deviceID, communityId, encryptedData()).executes({
