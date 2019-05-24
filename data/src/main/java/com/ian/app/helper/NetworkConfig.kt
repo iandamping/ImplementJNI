@@ -3,8 +3,8 @@ package com.ian.app.helper
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.ian.app.data.BuildConfig
-import com.ian.app.helper.SecretKeyHelper.apiKey
-import com.ian.app.helper.SecretKeyHelper.baseUrl
+import com.ian.app.data.helper.SecretKeyHelper.apiKey
+import com.ian.app.data.helper.SecretKeyHelper.baseUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
