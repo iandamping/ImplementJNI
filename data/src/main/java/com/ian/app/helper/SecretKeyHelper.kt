@@ -16,8 +16,6 @@ object SecretKeyHelper {
     val communityId: String
         external get
 
-    init {
-        System.loadLibrary("ian")
-    }
+
 
 }

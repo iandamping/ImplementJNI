@@ -19,6 +19,10 @@ Created by Ian Damping on 22/05/2019.
 Github = https://github.com/iandamping
  */
 class NewsRepository(ctx: Context) {
+
+    init {
+        System.loadLibrary("ian")
+    }
     private val gson = Gson()
     private var api: ApiInterface = NetworkConfig.getRetrofit(ctx).create(ApiInterface::class.java)
 
